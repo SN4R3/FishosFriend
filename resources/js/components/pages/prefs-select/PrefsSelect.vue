@@ -45,25 +45,30 @@
       <v-stepper-step :complete="step > 6" step="6">Confirm Preferences</v-stepper-step>
 
       <v-stepper-content step="6">
-       <!-- TODO fix up CSS -->
-        <v-row v-if="step == 6"><v-icon>mdi-calender</v-icon> Date & Time: <strong>{{time}}</strong></v-row>
-        <v-row v-if="step == 6"><v-icon>mdi-water</v-icon> Water Type: <strong>{{water.type}} <span v-if="water.bay">({{water.bay}})</span></strong></v-row>
-        <v-row v-if="step == 6">
-          <v-icon>mdi-target</v-icon> Target Species: 
-          <strong>
-            <span v-if="species.length === speciesList.length">All Species</span>
-            <span v-else
-              v-for="(s, i) in species" 
-              :key="s.name"
-            >
-              {{s.name}} <span v-if="(i + 1) !== species.length">, </span>
-            </span>
-          </strong>
-        </v-row>
-        <v-row v-if="step == 6"><v-icon>mdi-map-marker</v-icon> Location: <strong>Less than {{location.distance}}km from {{location.loc.name}}</strong></v-row>
-        <v-row v-if="step == 6"><v-icon>mdi-user</v-icon> Priority: <strong>{{priority.text}}</strong></v-row>
-      </v-stepper-content> 
+        <v-col>
+          <v-row v-if="step == 6"><v-icon>mdi-calendar-month</v-icon> Date & Time: &nbsp;<strong> {{time.format("dddd, MMMM Do YYYY, h:mm:ss a")}}</strong></v-row>
+          <v-row v-if="step == 6"><v-icon>mdi-water</v-icon> Water Type: &nbsp;<strong> {{water.type.toUpperCase()}}WATER <span v-if="water.bay">({{water.bay.toUpperCase()}})</span></strong></v-row>
+          <v-row v-if="step == 6">
+            <v-icon>mdi-target</v-icon> Target Species: &nbsp;
+            <strong>
+              <span v-if="species.length === speciesList.length">All Species </span>
+              <span v-else
+                v-for="(s, i) in species" 
+                :key="s.name"
+              >
+                {{s.name}} <span v-if="(i + 1) !== species.length">, </span>
+              </span>
+            </strong>
+          </v-row>
+          <v-row v-if="step == 6">
+            <v-icon>mdi-map-marker</v-icon> Location: &nbsp;<strong> Less than {{location.distance}}km from {{location.loc.name}}</strong></v-row>
+          <v-row v-if="step == 6"><v-icon>mdi-account</v-icon> Priority: &nbsp;<strong>{{priority.text}}</strong></v-row>
 
+          <v-row class="justify-end">
+            <v-btn depressed color="primary" @click="savePreferences">Save Preferences</v-btn>
+          </v-row>
+        </v-col>
+      </v-stepper-content> 
     </v-stepper>
   </div>
 </template>
@@ -89,7 +94,6 @@ export default {
   },
   data() {
     return {
-      step: 1,
       time: this.$moment(),
       priority: null,
       water: null,
@@ -97,7 +101,28 @@ export default {
       location: null,
     }
   },
+  mounted() {
+    if(localStorage.getItem('ff-prefs')) {
+      let { step, time, priority, water, species, location } = JSON.parse(localStorage.getItem('ff-prefs'));
+      this.step = step
+      this.time = time
+      this.priority = priority
+      this.water = water
+      this.species = species
+      this.location = location
+    }
+  },
   methods: {
+    savePreferences() {
+      localStorage.setItem('ff-prefs', JSON.stringify({
+        time: this.time,
+        priority: this.priority,
+        water: this.water,
+        species: this.species,
+        location: this.location,
+      }))
+      window.location.href = '/'
+    },
     waterSelected(water) {
       this.water = water
       this.step++;

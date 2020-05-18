@@ -8,13 +8,15 @@ moment.locale('au');
 Vue.prototype.$moment = moment
 
 import NavBar from './components/layout/NavBar'
-import PrefsSelect from './components/prefs-select/PrefsSelect'
+import Dashboard from './components/pages/Dashboard'
+import PrefsSelect from './components/pages/prefs-select/PrefsSelect'
 
 const app = new Vue({
   el: '#app',
   vuetify,
   components: {
     NavBar,
+    'dash-board': Dashboard,
     PrefsSelect
   },
 })

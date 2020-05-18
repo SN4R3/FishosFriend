@@ -31,7 +31,10 @@ export default {
   name: 'PrioritySelect',
   data() {
     return {
-      val: 'close',
+      val: {
+        text: 'Proximity to my location',
+        value: 'close'
+      },
       items: [
         {
           text: 'Proximity to my location',

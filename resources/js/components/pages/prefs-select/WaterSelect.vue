@@ -13,7 +13,7 @@
       <v-col v-show="waterType == 'salt'">
         <v-radio-group v-model="bay">
           <v-radio label="Port Phillip Bay" value="ppb"></v-radio>
-          <v-radio label="Westernport Bay" value="wb"></v-radio>
+          <v-radio label="Westernport Bay" value="wp"></v-radio>
         </v-radio-group>
       </v-col>
     </v-row>
