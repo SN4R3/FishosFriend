@@ -11,7 +11,8 @@
     >
       <v-img
         height="250"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+        max-width="350"
+        :src="'/assets/img/spots/'+spot.img"
       ></v-img>
 
       <v-card-title>{{spot.name}}</v-card-title>

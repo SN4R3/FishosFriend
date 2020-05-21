@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/searchPostcode', 'Api\PostcodeController@searchPostcode');
+Route::get('/fetchRecommendedSpots', 'Api\SpotController@fetchRecommendedSpots');
+Route::get('/fetchTodaysWeather', 'Api\WeatherController@fetchTodaysWeather');

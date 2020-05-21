@@ -40,11 +40,11 @@
 
       <v-row>
         <v-col sm="12" md="6">
-          <h3>Spot Recommendations</h3>
+          <h2>Spot Recommendations</h2>
           <SpotsList :spots="spots"/>
         </v-col>
         <v-col sm="12" md="6">
-          <h3>Weather Now</h3>
+          <h2>Weather Now</h2>
           <v-row class="justify-space-around">
             <WeatherCard v-for="(area, i) in areas" :key="'area-'+i" class="col-sm-12 col-lg-6" :area="area"/>
           </v-row>
@@ -82,15 +82,18 @@
           this.areas = [
             {
               selected: this.preferences.water.bay === 'wp',
-              name: 'Westernport West'
+              name: 'Westernport West',
+              id: '13838'
             },
             {
               selected: this.preferences.water.bay === 'wp',
-              name: 'Westernport East'
+              name: 'Westernport East',
+              id: '12383'
             },
             {
               selected: this.preferences.water.bay === 'ppb',
-              name: 'Port Phillip Bay'
+              name: 'Port Phillip Bay',
+              id: '13856',
             },
           ]
         } else {

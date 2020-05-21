@@ -10,5 +10,5 @@ use App\Species;
 use App\SpotTip;
 
 class SpotController extends Controller {
-    
+  
 }
