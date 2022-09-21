@@ -22,6 +22,6 @@
     "dependencies": {
         "moment": "^2.25.3",
         "vue": "^2.6.11",
-        "vuetify": "^2.2.27"
+        "vuetify": "^2.6.10"
     }
 }
